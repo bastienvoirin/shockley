@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>IC Label Generator</title>
+        <link rel="stylesheet" href="stylesheets/style.css">
+    </head>
+    <body>
+        <button type="button" onclick="add()">Add</button><br>
+        <button type="button" onclick="generate()">Generate</button><br>
+        <select name="chip" onchange="loadChip(this.value)" id="db">
+            <option value="custom"></option>
+        </select><br>
+        <input type="text" onchange="ref = this.value;" name="ref" placeholder="Reference"><br>
+        <input type="text" onchange="desc = this.value;" name="desc" placeholder="Description" size="80"><br>
+        <input type="number" onchange="count = this.value;" name="count" min="1" max="10" value="1"><br>
+        <select name="package" onchange="chgPackage(this.value)">
+            <option selected>Package</option>
+            <option value="DIP4">DIP4</option>
+            <option value="DIP6">DIP6</option>
+            <option value="DIP8">DIP8</option>
+            <option value="DIP14">DIP14</option>
+            <option value="DIP16">DIP16</option>
+            <option value="DIP18">DIP18</option>
+            <option value="DIP20">DIP20</option>
+            <option value="DIP24">DIP24 (narrow)</option>
+            <option value="DIP24 wide">DIP24 (wide)</option>
+            <option value="DIP28">DIP28 (narrow)</option>
+            <option value="DIP24 wide">DIP28 (wide)</option>
+            <option value="DIP32">DIP32</option>
+            <option value="DIP36">DIP36</option>
+            <option value="DIP40">DIP40</option>
+            <option value="DIP48">DIP48</option>
+            <option value="DIP52">DIP52</option>
+            <option value="DIP64">DIP64</option>
+        </select><br>
+        <section id="pin_labels"></section><table id="function_table"></table><br>
+        <button type="button" onclick="generateEntry()">Generate database entry</button>
+        <button type="button" onclick="copy()">Copy to clipboard</button><br>
+        <textarea name="JSON" rows="24" cols="120"></textarea>
+        <a id="anchor" hidden download="IC labels.tex" href=""></a>
+        <script type="application/javascript" src="javascript/main.js" charset="utf-8"></script>
+        <script type="application/javascript" src="javascript/loadDB.js" charset="utf-8"></script>
+        <script type="application/javascript" src="javascript/generateEntry.js" charset="utf-8"></script>
+        <script type="application/javascript" src="database/db.js" charset="utf-8" onload="loadDB()"></script>
+    </body>
+</html>
