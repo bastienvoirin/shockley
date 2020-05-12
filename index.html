@@ -2,19 +2,21 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>IC Label Generator</title>
+        <title>IC database and label generator</title>
         <link rel="stylesheet" href="stylesheets/style.css">
     </head>
     <body>
-        <button type="button" onclick="add()">Add</button><br>
-        <button type="button" onclick="generate()">Generate</button><br>
+        <h1>Shockley</h1>
+        <h2>IC database and label generator</h2>
+        <button type="button" onclick="add()">Add to the .tex file</button>
+        <button type="button" onclick="generate()">Generate .tex file</button><br>
         <select name="chip" onchange="loadChip(this.value)" id="db">
-            <option value="custom"></option>
+            <option></option>
         </select><br>
-        <input type="text" onchange="ref = this.value;" name="ref" placeholder="Reference"><br>
-        <input type="text" onchange="desc = this.value;" name="desc" placeholder="Description" size="80"><br>
-        <input type="number" onchange="count = this.value;" name="count" min="1" max="10" value="1"><br>
-        <select name="package" onchange="chgPackage(this.value)">
+        <label>Reference<br><input type="text" onchange="ref = this.value; generateEntry()" name="ref" placeholder="Reference"></label><br>
+        <label>Description<br><input type="text" onchange="desc = this.value; generateEntry()" name="desc" placeholder="Description" size="80"></label><br>
+        <label>Count<br><input type="number" onchange="count = this.value; generateEntry()" name="count" min="1" max="10" value="1"></label><br>
+        <label>Package<br><select name="package" onchange="chgPackage(this.value); generateEntry()">
             <option selected>Package</option>
             <option value="DIP4">DIP4</option>
             <option value="DIP6">DIP6</option>
@@ -33,11 +35,10 @@
             <option value="DIP48">DIP48</option>
             <option value="DIP52">DIP52</option>
             <option value="DIP64">DIP64</option>
-        </select><br>
+        </select></label><br>
         <section id="pin_labels"></section><table id="function_table"></table><br>
-        <button type="button" onclick="generateEntry()">Generate database entry</button>
         <button type="button" onclick="copy()">Copy to clipboard</button><br>
-        <textarea name="JSON" rows="24" cols="120"></textarea>
+        <textarea name="JSON" rows="20" cols="80"></textarea>
         <a id="anchor" hidden download="IC labels.tex" href=""></a>
         <script type="application/javascript" src="javascript/main.js" charset="utf-8"></script>
         <script type="application/javascript" src="javascript/loadDB.js" charset="utf-8"></script>

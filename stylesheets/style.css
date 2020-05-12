@@ -5,11 +5,11 @@
     font-family: monospace;
 }
 
-.pin, option {
+.pin, option, textarea {
     white-space: pre;
 }
 
-input, select, button, table, textarea {
+h1, h2, label, input, select, button, table, textarea {
     margin: 4pt;
 }
 
@@ -37,5 +37,6 @@ th {
 }
 
 textarea {
+    overflow: auto;
     resize: none;
 }

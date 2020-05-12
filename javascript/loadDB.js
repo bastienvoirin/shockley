@@ -28,6 +28,7 @@ function loadChip(value) {
     }
 
     loadFunctionTable(chip);
+    generateEntry();
 }
 
 function loadFunctionTable(chip) {
