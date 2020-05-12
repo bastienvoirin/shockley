@@ -1,4 +1,5 @@
 - Function table
     - Editor
     - Horizontal and vertical separator lines
+    - Text alignment
 - Datasheet link
