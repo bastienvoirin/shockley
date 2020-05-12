@@ -123,6 +123,30 @@ const db = [
         ]
     },
     {
+        "ref": "AT28C256",
+        "desc": "256K (32K x 8) paged parallel EEPROM",
+        "package": "DIP28 wide",
+        "pins": 28,
+        "rows": 14,
+        "cols": 2,
+        "pin_labels": [
+            ["A14", "A12", "A7", "A6", "A5", "A4", "A3", "A2", "A1", "A0", "I/O0", "I/O1", "I/O2", "GND"],
+            ["I/O3", "I/O4", "I/O5", "I/O6", "I/O7", "!CE", "A10", "!OE", "A11", "A9", "A8", "A13", "!WE", "VCC"]
+        ]
+    },
+    {
+        "ref": "AT28C64",
+        "desc": "64K (8K x 8) parallel EEPROM",
+        "package": "DIP28 wide",
+        "pins": 28,
+        "rows": 14,
+        "cols": 2,
+        "pin_labels": [
+            ["RDY/!BUSY", "A12", "A7", "A6", "A5", "A4", "A3", "A2", "A1", "A0", "I/O0", "I/O1", "I/O2", "GND"],
+            ["I/O3", "I/O4", "I/O5", "I/O6", "I/O7", "!CE", "A10", "!OE", "A11", "A9", "A8", "NC", "!WE", "VCC"]
+        ]
+    },
+    {
         "ref": "ATF16V8",
         "desc": "EEPLD",
         "package": "DIP20",
@@ -130,8 +154,44 @@ const db = [
         "rows": 10,
         "cols": 2,
         "pin_labels": [
-            ["I/CLK", "I1", "I2", "I3", "I4", "I5", "I6", "I7", "I8", "GND"],
-            ["I9/!OE", "I/O", "I/O", "I/O", "I/O", "I/O", "I/O", "I/O", "I/O", "VCC"]
+            ["IN/CLK", "IN", "IN", "IN", "IN", "IN", "IN", "IN", "IN", "GND"],
+            ["IN/!OE", "I/O", "I/O", "I/O", "I/O", "I/O", "I/O", "I/O", "I/O", "VCC"]
+        ]
+    },
+    {
+        "ref": "ATF22V10",
+        "desc": "EEPLD",
+        "package": "DIP24 wide",
+        "pins": 24,
+        "rows": 12,
+        "cols": 2,
+        "pin_labels": [
+            ["IN/CLK", "IN", "IN", "IN/PD", "IN", "IN", "IN", "IN", "IN", "IN", "IN", "GND"],
+            ["IN", "I/O", "I/O", "I/O", "I/O", "I/O", "I/O", "I/O", "I/O", "I/O", "I/O", "VCC"]
+        ]
+    },
+    {
+        "ref": "CD4008",
+        "desc": "4-bit full adder",
+        "package": "DIP16",
+        "pins": 16,
+        "rows": 8,
+        "cols": 2,
+        "pin_labels": [
+            ["A4", "B3", "A3", "B2", "A2", "B1", "A1", "GND"],
+            ["CIN", "S1", "S2", "S3", "S4", "COUT", "B4", "VCC"]
+        ]
+    },
+    {
+        "ref": "CD4040",
+        "desc": "12-stage ripple-carry binary counter/divider",
+        "package": "DIP16",
+        "pins": 16,
+        "rows": 8,
+        "cols": 2,
+        "pin_labels": [
+            ["Q12", "Q6", "Q5", "Q7", "Q4", "Q3", "Q2", "GND"],
+            ["Q1", "PHI", "R", "Q9", "Q8", "Q10", "Q11", "VCC"]
         ]
     },
     {
@@ -142,8 +202,20 @@ const db = [
         "rows": 8,
         "cols": 2,
         "pin_labels": [
-            ["J", "KD", "H", "G", "F", "E", "KB", "GND"],
-            ["KC", "KA", "D", "C", "B", "A", "EXP", "VCC"]
+            ["J", "OE", "H", "G", "F", "E", "Kb", "GND"],
+            ["Kc", "Ka", "D", "C", "B", "A", "EXP", "VCC"]
+        ],
+        "function_table": [
+            [["*INPUTS", 3, 1], ["*OUTPUT", 2, 1]],
+            ["*Ka", "*Kb", "*Kc", "*FUNCTION", "*BOOLEAN EXPRESSION"],
+            ["0", "0", "0", "NOR", "J = !(A+B+C+D+E+F+G+H)+(EXP)!"],
+            ["0", "0", "1", "OR", "J = (A+B+C+D+E+F+G+H)+(EXP)"],
+            ["0", "1", "0", "OR/AND", "J = (A+B+C+D)·(E+F+G+H)·!(EXP)!"],
+            ["0", "1", "1", "OR/NAND", "J = !(A+B+C+D)·(E+F+G+H)·!(EXP)!!"],
+            ["1", "0", "0", "AND", "J = (ABCDEFGH)·!(EXP)!"],
+            ["1", "0", "1", "NAND", "J = !(ABCDEFGH)·!(EXP)!!"],
+            ["1", "1", "0", "AND/NOR", "J = !(ABCD)+(EFGH)+(EXP)!"],
+            ["1", "1", "1", "AND/OR", "J = (ABCD)+(EFGH)+(EXP)"]
         ]
     },
     {
@@ -156,6 +228,18 @@ const db = [
         "pin_labels": [
             ["4", "6", "COM", "7", "5", "INH", "VEE", "VSS"],
             ["C", "B", "A", "3", "0", "1", "2", "VDD"]
+        ]
+    },
+    {
+        "ref": "CD4076",
+        "desc": "4-bit D-type register",
+        "package": "DIP16",
+        "pins": 16,
+        "rows": 8,
+        "cols": 2,
+        "pin_labels": [
+            ["!OE1", "!OE2", "Q1", "Q2", "Q3", "Q4", "", "GND"],
+            ["!IE1", "!IE2", "D4", "D3", "D2", "D1", "RST", "VCC"]
         ]
     },
     {

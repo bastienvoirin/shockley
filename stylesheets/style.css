@@ -28,7 +28,7 @@ table {
 }
 
 th, td {
-    border: 1.5px solid black;
+    border: 1px solid black;
     padding: 6pt;
 }
 
@@ -39,4 +39,14 @@ th {
 textarea {
     overflow: auto;
     resize: none;
+}
+
+.overline {
+    border-top: 1.75px solid black;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.overline .overline {
+    margin-top: 2px;
 }

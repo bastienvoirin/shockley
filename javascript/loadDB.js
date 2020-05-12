@@ -80,9 +80,8 @@ function loadFunctionTable(chip) {
 
             let cellElt = `<${cellType}`;
 
-            if (content[0] === "!") {
-                content = content.substring(1);
-                cellElt += ` style="text-decoration: overline"`;
+            while (content.includes("!")) {
+                content = content.replace(/!(.+)!/, '<span class="overline">$1</span>');
             }
 
             if (colspan > 1) cellElt += ` colspan="${colspan}"`;
