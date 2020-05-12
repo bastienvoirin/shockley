@@ -19,6 +19,13 @@ function loadChip(value) {
     refElt.onchange();
     descElt.onchange();
 
+    for (let option of document.getElementsByName("package")[0].children) {
+        if (option.value === chip.package) {
+            option.selected = true;
+            break;
+        }
+    }
+
     chgPackage(chip.package);
 
     for (let i = 1; i <= chip.rows; i++) {
