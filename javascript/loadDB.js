@@ -1,14 +1,22 @@
 function loadDB() {
     for (let i = 0; i < db.length; i++) {
         let option = document.createElement("option");
-        option.value = i;
-        option.innerHTML = `${db[i].ref} ${db[i].desc}`;
-        document.getElementById("db").appendChild(option);
+        option.value = `${db[i].ref} ${db[i].desc}`;
+        document.getElementById("chips").appendChild(option);
     }
 }
 
-function loadChip(value) {
-    const chip = db[Number(value)];
+function loadChip(val) {
+    let value;
+    let chip;
+
+    for (let i = 0; i < db.length; i++) {
+        chip = db[Number(i)];
+        if (val === `${db[i].ref} ${db[i].desc}`) {
+            value = i;
+            break;
+        }
+    }
 
     let refElt = document.getElementsByName("ref")[0];
     let descElt = document.getElementsByName("desc")[0];

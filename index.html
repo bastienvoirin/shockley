@@ -11,9 +11,8 @@
         <h2>IC database and label generator</h2>
         <button type="button" onclick="add()">Add to the .tex file</button>
         <button type="button" onclick="generate()">Generate .tex file</button><br>
-        <select name="chip" onchange="loadChip(this.value)" id="db">
-            <option></option>
-        </select><br>
+        <input type="search" placeholder="Search" autocomplete="off" list="chips" name="chip" onchange="loadChip(this.value)" id="db" size="80"><br>
+        <datalist id="chips"></datalist>
         <label>Reference<br><input type="text" onchange="ref = this.value; generateEntry()" name="ref" placeholder="Reference"></label><br>
         <label>Description<br><input type="text" onchange="desc = this.value; generateEntry()" name="desc" placeholder="Description" size="80"></label><br>
         <label>Count<br><input type="number" onchange="count = this.value; generateEntry()" name="count" min="1" max="10" value="1"></label><br>
