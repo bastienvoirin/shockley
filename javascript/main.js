@@ -25,59 +25,26 @@ function add() {
     if (!package) return false;
 
     const width = package.includes("wide") ? 0.6 : 0.3;
+    const parent = document.getElementById("parent");
 
-    pin_labels.push("\n\\begin{tikzpicture}\n");
+    console.log(pins);
 
-    for (let i = 1; i <= pins / 2; i++) {
-        let label_left  = document.getElementsByName(`pin${i}`)[0].value || " ";
-        let label_right = document.getElementsByName(`pin${pins+1-i}`)[0].value || " ";
+    for (let _ = 0; _ < count; _++) {
+        let newLabel = document.createElement("div");
 
-        let il = label_left.indexOf("!");
-        let ir = label_right.indexOf("!");
+        newLabel.className = "label";
+        newLabel.style.display = "inline-block";
+        newLabel.style.width = `${width}in`;
+        newLabel.style.height = `${pins*0.05}in`;
 
-        if (il > -1) {
-            label_left = `${label_left.substring(0,il)}$\\overline{\\mbox{${label_left.substring(il+1)}}}$`;
+        for (let i = 1; i <= pins / 2; i++) {
+            let label_left  = document.getElementsByName(`pin${i}`)[0].value || " ";
+            let label_right = document.getElementsByName(`pin${pins+1-i}`)[0].value || " ";
+
+            newLabel.innerHTML += `<span class="left">${label_left}</span>`;
+            newLabel.innerHTML += `<span class="right">${label_right}</span><br>`;
         }
-        if (ir > -1) {
-            label_right = `${label_right.substring(0,ir)}$\\overline{\\mbox{${label_right.substring(ir+1)}}}$`;
-        }
 
-        const y = (-0.1*(i-1)).toFixed(1);
-
-        pin_labels.push(
-            `\\foreach \\j in {0,...,${count-1}} { ` +
-            `\\node[right] at ({2.54*0.7*\\j-0.01},${y}in) {${label_left}}; ` +
-            `\\node[left] at ({2.54*(0.7*\\j+0.01+${width})},${y}in) {${label_right}}; }\n`
-        );
+        parent.appendChild(newLabel);
     }
-
-    pin_labels.push(
-        `\\foreach \\j in {0,...,${count-1}} {\n` +
-        `  \\node[rotate=-90] at ({2.54*(0.7*\\j+${width/2})},${(0.05-0.05*pins/2).toFixed(2)}in) {${ref || ""}};\n` +
-        `  \\node at ({2.54*(0.7*\\j+${width/2})},${(-0.05*(pins+1)).toFixed(2)}in) {\\scriptsize ${package}};\n` +
-        `  \\draw[very thin] ({2.54*0.7*\\j},0.05in) rectangle ({2.54*(0.7*\\j+${width})},${(0.05*(1-pins)).toFixed(2)}in);\n}\n` +
-        `\\end{tikzpicture}\n\n\\vspace{1.5em}\n{\\footnotesize ${ref}}\\\\\n{\\footnotesize ${desc}}\n\\vspace{4.5em}\n`
-    );
-}
-
-function generate() {
-    const blob = new Blob(
-        [
-            "\\documentclass[12pt,a4paper]{article}\n",
-            "\\usepackage[utf8]{inputenc}\n",
-            "\\usepackage[T1]{fontenc}\n",
-            "\\usepackage{tikz}\n",
-            "\\usepackage[left=0.5in,right=0.5in,top=0.5in,bottom=0.5in]{geometry}\n",
-            "\\pagestyle{empty}\n",
-            "\\setlength{\\parindent}{0pt}",
-            "\\begin{document}\n",
-            "\\fontsize{4}{4}\\selectfont\\sffamily\n",
-            ...pin_labels,
-            "\\end{document}\n"
-        ], {type: "application/x-tex", charset: "utf-8"}
-    );
-
-    const anchor = document.getElementById("anchor");
-    anchor.href = URL.createObjectURL(blob);
-    anchor.click();
 }

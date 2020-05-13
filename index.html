@@ -13,8 +13,7 @@
             <h2 class="no-print">IC database and label generator</h2>
         </header>
 
-        <button class="no-print" type="button" onclick="add()">Add to the .tex file</button>
-        <button class="no-print" type="button" onclick="generate()">Generate .tex file</button>
+        <button class="no-print" type="button" onclick="add()">Add</button>
         <br class="no-print">
 
         <input class="no-print" type="search" placeholder="Search" autocomplete="off" list="chips" name="chip" onchange="loadChip(this.value)" id="db" size="80">
@@ -66,8 +65,13 @@
         <button class="no-print" type="button" onclick="copy()">Copy to clipboard</button>
         <br class="no-print">
         <textarea class="no-print" name="JSON" rows="20" cols="80"></textarea>
+        <br class="no-print">
 
         <a id="anchor" hidden download="IC labels.tex" href=""></a>
+
+        <hr class="no-print">
+
+        <div id="parent"></div>
 
         <script type="application/javascript" src="javascript/main.js" charset="utf-8"></script>
         <script type="application/javascript" src="javascript/loadDB.js" charset="utf-8"></script>
