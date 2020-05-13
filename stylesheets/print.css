@@ -1,0 +1,17 @@
+.no-print {
+    margin: 0pt;
+    padding: 0pt;
+    display: none;
+    line-height: 0pt;
+    width: 0pt;
+    height: 0pt;
+}
+
+body {
+    margin: 1.5cm;
+}
+
+@page {
+    size: auto;
+    margin: 0;
+}

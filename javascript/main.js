@@ -13,8 +13,8 @@ function chgPackage(value) {
 
     for (let i = 1; i <= pins / 2; i++) {
         labels.innerHTML += `<span class="pin">${i.toString().padStart(2, " ")}</span>`;
-        labels.innerHTML += `<input type="text" class="pin_label" size="10" onchange="generateEntry()" name="pin${i}" placeholder="Pin ${i}">`;
-        labels.innerHTML += `<input type="text" class="pin_label" size="10" onchange="generateEntry()" name="pin${pins+1-i}" placeholder="Pin ${pins+1-i}">`;
+        labels.innerHTML += `<input type="text" class="pin_label" size="6" onchange="generateEntry()" name="pin${i}" placeholder="Pin ${i}">`;
+        labels.innerHTML += `<input type="text" class="pin_label" size="6" onchange="generateEntry()" name="pin${pins+1-i}" placeholder="Pin ${pins+1-i}">`;
         labels.innerHTML += `<span class="pin">${(pins+1-i).toString().padStart(2, " ")}</span><br>`;
     }
 }

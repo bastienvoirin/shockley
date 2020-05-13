@@ -5,41 +5,70 @@
         <title>IC database and label generator</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="stylesheets/style.css">
+        <link rel="stylesheet" href="stylesheets/print.css" media="print">
     </head>
     <body>
-        <h1>Shockley</h1>
-        <h2>IC database and label generator</h2>
-        <button type="button" onclick="add()">Add to the .tex file</button>
-        <button type="button" onclick="generate()">Generate .tex file</button><br>
-        <input type="search" placeholder="Search" autocomplete="off" list="chips" name="chip" onchange="loadChip(this.value)" id="db" size="80"><br>
-        <datalist id="chips"></datalist>
-        <label>Reference<br><input type="text" onchange="ref = this.value; generateEntry()" name="ref" placeholder="Reference"></label><br>
-        <label>Description<br><input type="text" onchange="desc = this.value; generateEntry()" name="desc" placeholder="Description" size="80"></label><br>
-        <label>Count<br><input type="number" onchange="count = this.value; generateEntry()" name="count" min="1" max="10" value="1"></label><br>
-        <label>Package<br><select name="package" onchange="chgPackage(this.value); generateEntry()">
-            <option selected>Package</option>
-            <option value="DIP4">DIP4</option>
-            <option value="DIP6">DIP6</option>
-            <option value="DIP8">DIP8</option>
-            <option value="DIP14">DIP14</option>
-            <option value="DIP16">DIP16</option>
-            <option value="DIP18">DIP18</option>
-            <option value="DIP20">DIP20</option>
-            <option value="DIP24">DIP24 (narrow)</option>
-            <option value="DIP24 wide">DIP24 (wide)</option>
-            <option value="DIP28">DIP28 (narrow)</option>
-            <option value="DIP28 wide">DIP28 (wide)</option>
-            <option value="DIP32">DIP32</option>
-            <option value="DIP36">DIP36</option>
-            <option value="DIP40">DIP40</option>
-            <option value="DIP48">DIP48</option>
-            <option value="DIP52">DIP52</option>
-            <option value="DIP64">DIP64</option>
-        </select></label><br>
-        <section id="pin_labels"></section><table id="function_table"></table><br>
-        <button type="button" onclick="copy()">Copy to clipboard</button><br>
-        <textarea name="JSON" rows="20" cols="80"></textarea>
+        <header>
+            <h1 class="no-print">Shockley</h1>
+            <h2 class="no-print">IC database and label generator</h2>
+        </header>
+
+        <button class="no-print" type="button" onclick="add()">Add to the .tex file</button>
+        <button class="no-print" type="button" onclick="generate()">Generate .tex file</button>
+        <br class="no-print">
+
+        <input class="no-print" type="search" placeholder="Search" autocomplete="off" list="chips" name="chip" onchange="loadChip(this.value)" id="db" size="80">
+        <br class="no-print">
+        <datalist class="no-print" id="chips"></datalist>
+
+        <label class="no-print">Reference<br class="no-print">
+            <input class="no-print" type="text" onchange="ref = this.value; generateEntry()" name="ref" placeholder="Reference">
+        </label>
+        <br class="no-print">
+
+        <label class="no-print">Description<br class="no-print">
+            <input class="no-print" type="text" onchange="desc = this.value; generateEntry()" name="desc" placeholder="Description" size="80">
+        </label>
+        <br class="no-print">
+
+        <label class="no-print">Count<br class="no-print">
+            <input class="no-print" type="number" onchange="count = this.value; generateEntry()" name="count" min="1" max="10" value="1">
+        </label>
+        <br class="no-print">
+
+        <label class="no-print">Package<br class="no-print">
+            <select class="no-print" name="package" onchange="chgPackage(this.value); generateEntry()">
+                <option selected>Package</option>
+                <option value="DIP4">DIP4</option>
+                <option value="DIP6">DIP6</option>
+                <option value="DIP8">DIP8</option>
+                <option value="DIP14">DIP14</option>
+                <option value="DIP16">DIP16</option>
+                <option value="DIP18">DIP18</option>
+                <option value="DIP20">DIP20</option>
+                <option value="DIP24">DIP24 (narrow)</option>
+                <option value="DIP24 wide">DIP24 (wide)</option>
+                <option value="DIP28">DIP28 (narrow)</option>
+                <option value="DIP28 wide">DIP28 (wide)</option>
+                <option value="DIP32">DIP32</option>
+                <option value="DIP36">DIP36</option>
+                <option value="DIP40">DIP40</option>
+                <option value="DIP48">DIP48</option>
+                <option value="DIP52">DIP52</option>
+                <option value="DIP64">DIP64</option>
+            </select>
+        </label>
+        <br class="no-print">
+        <section class="no-print" id="pin_labels"></section>
+        <table class="no-print" id="function_table"></table>
+        <br class="no-print">
+
+        <button class="no-print" type="button" onclick="copy()">Copy to clipboard</button>
+        <br class="no-print">
+        <textarea class="no-print" name="JSON" rows="20" cols="80"></textarea>
+
         <a id="anchor" hidden download="IC labels.tex" href=""></a>
+
         <script type="application/javascript" src="javascript/main.js" charset="utf-8"></script>
         <script type="application/javascript" src="javascript/loadDB.js" charset="utf-8"></script>
         <script type="application/javascript" src="javascript/generateEntry.js" charset="utf-8"></script>
